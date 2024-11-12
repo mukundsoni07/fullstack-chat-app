@@ -25,7 +25,7 @@ const Login = () => {
         withCredentials: true
       });
       navigate("/");
-      console.log(res);
+      console.log(res.data);
       
       dispatch(setAuthUser(res.data))
     } catch (error) {

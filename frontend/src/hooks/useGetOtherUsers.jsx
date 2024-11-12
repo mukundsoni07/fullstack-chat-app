@@ -9,7 +9,7 @@ const useGetOtherUsers = () => {
   useEffect(() => {
     const fetchOtherUsers = async () => {
         try {
-            axios.defaults.withCredentials = true;
+            // axios.defaults.withCredentials = true;
             const res  = await axios.get(`${BASE_URL}/api/v1/user/`, { withCredentials: true});
             console.log(res);
 
