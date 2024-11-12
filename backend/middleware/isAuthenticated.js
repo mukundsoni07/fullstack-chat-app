@@ -5,13 +5,13 @@ const isAuthenticated = async (req, res, next) => {
         const token = req.cookies.token;
         if (!token) {
             return res.status(401).json({ 
-                message: 'Unauthorized'
+                message: 'Unauthorized token'
             });
         }
         const decode = jwt.verify(token, process.env.JWT_SECRET_KEY)
         if(!decode){
             return res.status(401).json({
-                message: 'Unauthorized'
+                message: 'Unauthorized not matched'
             })
         }
         req.id = decode.userId;
