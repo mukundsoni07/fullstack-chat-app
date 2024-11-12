@@ -25,6 +25,8 @@ const Login = () => {
         withCredentials: true
       });
       navigate("/");
+      console.log(res);
+      
       dispatch(setAuthUser(res.data))
     } catch (error) {
       toast.error(error.response.data.message);

@@ -68,7 +68,8 @@ export const login = async (req, res) => {
             _id:user._id,
             username: user.username,
             fullName: user.fullName,
-            profilePhoto: user.profilePhoto
+            profilePhoto: user.profilePhoto,
+            token
         })
     } 
     catch (error) {
