@@ -22,7 +22,7 @@ const corsOption={
     origin:'https://fullstack-chat-app-rho.vercel.app/',
     credentials:true
 };
-app.use(cors()); 
+app.use(cors(corsOption)); 
 
 //routes
 app.use("/api/v1/user",userRoute);
