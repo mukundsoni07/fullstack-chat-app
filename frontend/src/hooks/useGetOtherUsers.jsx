@@ -15,8 +15,12 @@ const useGetOtherUsers = () => {
 
             dispatch(setOtherUsers(res.data))
         } catch (error) {
-            console.log(error);
-            
+          if (error.response && error.response.status === 401) {
+            console.log('Unauthorized: Token might be expired or invalid');
+            // Optionally, redirect to login or attempt to refresh the token
+        } else {
+            console.log('Error:', error);
+        }
         }
     }
     fetchOtherUsers();

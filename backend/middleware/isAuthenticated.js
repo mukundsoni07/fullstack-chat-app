@@ -4,7 +4,7 @@ const isAuthenticated = async (req, res, next) => {
     try {
         const token = req.cookies.token;
         if (!token) {
-            return res.status(401).json({ 
+            return res.status(402).json({ 
                 message: 'Unauthorized token'
             });
         }
