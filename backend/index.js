@@ -24,6 +24,10 @@ const corsOption={
 };
 app.use(cors(corsOption)); 
 
+app.use("/", (req, res) => {
+    res.send("Hello from server");
+})
+
 //routes
 app.use("/api/v1/user",userRoute);
 app.use("/api/v1/message", messageRoute)
