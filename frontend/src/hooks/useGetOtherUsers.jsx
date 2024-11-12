@@ -9,18 +9,12 @@ const useGetOtherUsers = () => {
   useEffect(() => {
     const fetchOtherUsers = async () => {
         try {
-            // axios.defaults.withCredentials = true;
-            const res  = await axios.get(`${BASE_URL}/api/v1/user/`, { withCredentials: true});
-            console.log(res);
+            axios.defaults.withCredentials = true;
+            const res  = await axios.get(`${BASE_URL}/api/v1/user/`);
 
             dispatch(setOtherUsers(res.data))
         } catch (error) {
-          if (error.response && error.response.status === 401) {
-            console.log('Unauthorized: Token might be expired or invalid');
-            // Optionally, redirect to login or attempt to refresh the token
-        } else {
-            console.log('Error:', error);
-        }
+            console.log(error);
         }
     }
     fetchOtherUsers();

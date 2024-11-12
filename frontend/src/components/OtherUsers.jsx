@@ -7,6 +7,7 @@ const OtherUsers = () => {
 
   useGetOtherUsers();
   const {otherUsers} = useSelector(store=>store.user);
+  
   if (!otherUsers) return;
 
   return (
