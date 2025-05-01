@@ -18,10 +18,7 @@ const PORT = process.env.PORT || 5000
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieParser());
-const corsOption={
-    origin:'*'
-};
-app.use(cors(corsOption)); 
+app.use(cors({ origin: "*"}));
 
 //routes
 app.use("/api/v1/user",userRoute);
