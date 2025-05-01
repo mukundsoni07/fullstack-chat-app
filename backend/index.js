@@ -19,8 +19,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieParser());
 const corsOption={
-    origin:'https://fullstack-chat-app-rho.vercel.app/',
-    credentials:true
+    origin:'*'
 };
 app.use(cors(corsOption)); 
 
@@ -29,6 +28,9 @@ app.use("/api/v1/user",userRoute);
 app.use("/api/v1/message", messageRoute)
 
 
+app.get("/", (req, res) => {
+    res.send("API is running!");
+});
 
 server.listen(PORT, () => {
     connectDB();
