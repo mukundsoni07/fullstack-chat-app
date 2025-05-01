@@ -1,45 +1,40 @@
-import express from "express"
-import dotenv from "dotenv"
+import express from "express";
+import dotenv from "dotenv";
 import connectDB from "./config/database.js";
-import userRoute from "./routes/userRoute.js"
-import messageRoute from "./routes/messageRoute.js"
+import userRoute from "./routes/userRoute.js";
+import messageRoute from "./routes/messageRoute.js";
 import cookieParser from "cookie-parser";
-import cors from "cors"
-import { app,server } from "./socket/socket.js";
+import cors from "cors";
+import { app, server } from "./socket/socket.js";
 
-dotenv.config({});
+dotenv.config();
 
+const PORT = process.env.PORT || 5000;
 
+const allowedOrigins = ["https://fullstack-chat-app-rho.vercel.app", "http://localhost:5173"];
 
-// const app = express();
-
-const PORT = process.env.PORT || 5000
-
-app.use(express.urlencoded({extended:true}));
-app.use(express.json());
-app.use(cookieParser());
-
-const allowedOrigin = "https://fullstack-chat-app-rho.vercel.app";
 app.use(cors({
-  origin: allowedOrigin,
+  origin: allowedOrigins,
   credentials: true,
 }));
 
 app.options("*", cors({
-  origin: allowedOrigin,
+  origin: allowedOrigins,
   credentials: true,
 }));
 
-//routes
-app.use("/api/v1/user",userRoute);
-app.use("/api/v1/message", messageRoute)
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser());
 
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/message", messageRoute);
 
 app.get("/", (req, res) => {
-    res.send("API is running!");
+  res.send("API is running!");
 });
 
 server.listen(PORT, () => {
-    connectDB();
-    console.log(`Server is running on port ${PORT}`);
-})
+  connectDB();
+  console.log(`Server is running on port ${PORT}`);
+});
